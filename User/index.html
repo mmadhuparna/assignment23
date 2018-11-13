@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!--React and Babel CDN scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.6/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.6/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+</head>
+
+<body>
+   <div id="root" class="container"></div>
+   <script type="text/babel">
+/*Parent User Component from which userlist will be passed to Users Child Component */
+   class User extends React.Component{    
+    constructor(){
+        super();
+        this.userlist = {data:
+        [
+            {
+              name: "Suparna", 
+              age: "38"
+            },
+            {
+              name:"Mahesh", 
+              age:"35"
+            },
+            {
+              name:"Tanuja", 
+              age:"28"
+            },
+            {
+              name:"Rohit", 
+              age:"30"
+            }
+        ]
+    }
+    }
+   
+    render(){
+        return(<div> 
+            <h1>User Details</h1> <br/>    
+            <ol>{
+             this.userlist.data.map((item, i )=>
+             <Users key = {i} 
+             data = {item}/>
+             )}
+            </ol>
+            <br/>
+        </div>
+    );
+    }
+}
+
+/*Users Child Component displaying props userlist passed from parent component User*/
+class Users extends React.Component{
+    render(){
+        return(<div>
+                <li>
+                <p>Name: {this.props.data.name}</p>
+                <p>Age: {this.props.data.age}</p></li><br/>
+        </div>);
+    }
+}  
+    ReactDOM.render( <User />, document.getElementById("root"));
+</script>
+</body>
+</html>
